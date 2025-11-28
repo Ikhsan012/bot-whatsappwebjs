@@ -77,6 +77,17 @@ function startBot() {
         }
     })
 
+    client.on('message_create', async message => {
+        if (message.body.startsWith('cuaca')) {
+            const args = message.body.trim().split(/\s+/)
+            args.shift()
+            const parts = args
+            const lokasi = parts.join(' ')
+            const data = await Fitur.cuaca(lokasi)
+            client.sendMessage(message.from, data)            
+        }
+    })
+
 }    
 
 startBot()
