@@ -87,6 +87,16 @@ function startBot() {
             client.sendMessage(message.from, data)            
         }
     })
+    client.on('message_create', async message => {
+        if (message.body.startsWith('spotify')) {
+            const args = message.body.trim().split(/\s+/)
+            args.shift()
+            const parts = args
+            const musik = parts.join(' ')
+            const data = await Fitur.spotify(musik)
+            client.sendMessage(message.from, data)
+        }
+    })
 
 }    
 

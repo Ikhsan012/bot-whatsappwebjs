@@ -3,8 +3,12 @@ const axios = require('axios');
 async function cuaca(data) {
     try {
         let url = `https://api.ryzumi.vip/api/search/weather?city=${data}`
-        const data1 = await axios.get(url)
-        const res = data1.data
+        const response = await axios.get(url)
+        const res = response.data
+
+        if (!res || !res.weather || res.weather.length === 0) {
+            return `⚠️ Maaf, data cuaca untuk kota *${data}* tidak ditemukan.`;
+        }
 
         const formatTime = (unixTimestamp) => {
     return new Date(unixTimestamp * 1000).toLocaleTimeString('id-ID', {
@@ -34,6 +38,9 @@ _Powered by OpenWeatherMap_
         return textForSend
     } catch (error) {
         console.error(error.message);
+        if (error.response) {
+            
+        }
     }
 }
 
