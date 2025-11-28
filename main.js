@@ -3,7 +3,6 @@ const axios = require('axios')
 const qrcode = require('qrcode-terminal')
 
 const Fitur = require('./comand')
-// const { Gempa } = Fitur
 
 function startBot() {
     const client = new Client({
