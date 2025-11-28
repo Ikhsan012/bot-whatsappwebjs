@@ -97,6 +97,18 @@ function startBot() {
             client.sendMessage(message.from, data)
         }
     })
+    client.on('message_create', async message => {
+        if (message.body.startsWith('dlspo')) {
+            const args = message.body.trim().split(/\s+/)
+            args.shift()
+            const parts = args
+            const musiklinks = parts.join(' ')
+            const { data, linkdl }= await Fitur.spotifydl(musiklinks)
+            const media = await MessageMedia.fromUrl(linkdl)
+            client.sendMessage(message.from, data)
+            client.sendMessage(message.from, media)
+        }
+    })
 
 }    
 
