@@ -109,6 +109,16 @@ function startBot() {
             client.sendMessage(message.from, media)
         }
     })
+    client.on('message_create', async message => {
+        if (message.body.startsWith('bstation')) {
+            const args = message.body.trim().split(/\s+/)
+            args.shift()
+            const parts = args
+            const filmlinks = parts.join(' ')
+            const data = await Fitur.bilibili(filmlinks)
+            client.sendMessage(message.from, data)
+        }
+    })
 
 }    
 
