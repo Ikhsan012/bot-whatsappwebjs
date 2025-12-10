@@ -69,10 +69,11 @@ function startBot() {
     })
     client.on('message_create', async message => {
         if (message.body.startsWith('lirik')) {
-            const args = message.body.split(' ').slice(1)
-            const args1 = args[0]
-            const args2 = args[1]
-            const data = await Fitur.Lirik(args1+args2)
+            const args = message.body.trim().split(/\s+/)
+            args.shift()
+            const parts = args
+            const judul = parts.join(' ')
+            const data = await Fitur.Lirik(judul)
             client.sendMessage(message.from, data)
         }
     })
@@ -117,6 +118,26 @@ function startBot() {
             const filmlinks = parts.join(' ')
             const data = await Fitur.bilibili(filmlinks)
             client.sendMessage(message.from, data)
+        }
+    })
+    client.on('message_create', async message => {
+        if (message.body.startsWith('cekhost')) {
+            const args = message.body.trim().split(/\s+/)
+            args.shift()
+            const parts = args
+            const linkhost = parts.join(' ')
+            const data = await Fitur.searchHost(linkhost)
+            client.sendMessage(message.from, data)
+        }
+    })
+    client.on('message_create', async message => {
+        if (message.body.startsWith('iplook')) {
+            const args = message.body.trim().split(/\s+/)
+            args.shift()
+            const parts = args
+            const ip = parts.join(' ')
+            const data = await Fitur.GetIP(ip)
+            client.sendMessage(message.from. data)
         }
     })
 

@@ -4,6 +4,8 @@ const cuaca = require('./cuaca.js')
 const spotify = require('./spotify-search.js')
 const spotifydl = require('./spotify-dl.js')
 const bilibili = require('./bstation-seacrh.js')
+const searchHost = require('./cekhost.js')
+const GetIP = require('./iplookup.js')
 
 module.exports = {
     Gempa,
@@ -11,5 +13,7 @@ module.exports = {
     cuaca,
     spotify,
     spotifydl,
-    bilibili
+    bilibili,
+    searchHost,
+    GetIP
 }
